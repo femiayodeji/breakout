@@ -31,13 +31,40 @@ function PlayState:update(dt)
     self.ball:update(dt)
 
     if self.ball:collides(self.paddle) then 
+        self.ball.y = self.paddle.y - 8
         self.ball.dy = -self.ball.dy
+
+        local paddleCenter = self.paddle.x + (self.paddle.width / 2)
+        local paddlePosition = self.paddle.x + self.paddle.width
+
+        if self.ball.x < paddleCenter and self.paddle.dx < 0 then 
+            self.ball.dx = -50 + -(8 * (paddlePosition / 2 - self.ball.x))
+        elseif self.ball.x > paddleCenter and self.paddle.dx > 0 then 
+            self.ball.dx = 50 + (8 * math.abs(paddlePosition / 2 - self.ball.x))
+        end
+
         gSounds['paddle-hit']:play()
     end
 
     for k, brick in pairs(self.bricks) do 
         if brick.inPlay and self.ball:collides(brick) then
             brick:hit()
+
+            if self.ball.x + 2 < brick.x and self.ball.dx > 0 then
+                self.ball.dx = -self.ball.dx
+                self.ball.x = brick.x - 8
+            elseif self.ball.x + 6 > brick.x + brick.width and self.ball.dx < 0 then 
+                self.ball.dx = -self.ball.dx
+                self.ball.x = brick.x + 32
+            elseif self.ball.y < brick.y then
+                self.ball.dy = -self.ball.dy
+                self.ball.y = brick.y - 8
+            else
+                self.ball.dy = -self.ball.dy
+                self.ball.y = brick.y + 16
+            end
+            self.ball.dy = self.ball.dy * 1.02
+            break
         end
     end
 

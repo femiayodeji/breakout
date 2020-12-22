@@ -2,6 +2,13 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.paddle = Paddle()
+    self.ball = Ball(1)
+
+    self.ball.dx = math.random(-200, 200)
+    self.ball.dy = math.random(-50, -60)
+
+    self.ball.x = VIRTUAL_WIDTH / 2 - 4
+    self.ball.y = VIRTUAL_HEIGHT - 42
 end
 
 function PlayState:update(dt)
@@ -26,6 +33,7 @@ end
 
 function PlayState:render()
     self.paddle:render()
+    self.ball:render()
 
     if self.paused then
         love.graphics.setFont(gFonts['large'])

@@ -50,3 +50,32 @@ function GenerateQuadsPaddles(atlas)
     end
     return quads
 end
+
+function GenerateQuadsBalls(atlas)
+    local x = 96
+    local y = 48
+
+    local counter = 1
+    local quads = {}
+
+    for i = 0, 3 do 
+        quads[counter] = love.graphics.newQuad(
+            x, y, 8, 8, atlas:getDimensions()
+        )
+        x = x + 8
+        counter = counter + 1
+    end
+
+    x = 96
+    y = 56
+
+    for i = 0, 2 do 
+        quads[counter] = love.graphics.newQuad(
+            x, y, 8, 8, atlas:getDimensions()
+        )
+        x = x + 8
+        counter = counter + 1
+    end
+
+    return quads
+end

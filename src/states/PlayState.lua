@@ -26,6 +26,13 @@ function PlayState:update(dt)
     end
 
     self.paddle:update(dt)
+    self.ball:update(dt)
+
+    if self.ball:collides(self.paddle) then 
+        self.ball.dy = -self.ball.dy
+        gSounds['paddle-hit']:play()
+    end
+
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end

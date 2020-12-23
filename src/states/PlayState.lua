@@ -46,6 +46,8 @@ function PlayState:update(dt)
 
     for k, brick in pairs(self.bricks) do 
         if brick.inPlay and self.ball:collides(brick) then
+            self.score = self.score + 10
+            
             brick:hit()
 
             if self.ball.x + 2 < brick.x and self.ball.dx > 0 then
@@ -97,8 +99,15 @@ function PlayState:render()
     self.paddle:render()
     self.ball:render()
 
+    renderScore(self.score)
+    renderHealth(self.health)
+
     if self.paused then
         love.graphics.setFont(gFonts['large'])
-        love.graphics.printf("PAUSED", 0, VIRTUAL_HEIGHT / 2 -16, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf(
+            "PAUSED", 0, 
+            VIRTUAL_HEIGHT / 2 -16, VIRTUAL_WIDTH, 
+            'center'
+        )
     end
 end

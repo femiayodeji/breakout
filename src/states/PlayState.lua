@@ -1,16 +1,14 @@
 PlayState = Class{__includes = BaseState}
 
-function PlayState:init()
-    self.paddle = Paddle()
-    self.ball = Ball(1)
+function PlayState:enter(params)
+    self.paddle = params.paddle
+    self.bricks = params.bricks
+    self.health = params.health
+    self.score = params.score
+    self.ball = params.ball
 
     self.ball.dx = math.random(-200, 200)
     self.ball.dy = math.random(-50, -60)
-
-    self.ball.x = VIRTUAL_WIDTH / 2 - 4
-    self.ball.y = VIRTUAL_HEIGHT - 42
-
-    self.bricks = LevelMaker.createMap()
 end
 
 function PlayState:update(dt)
@@ -63,11 +61,11 @@ function PlayState:update(dt)
                 self.ball.dy = -self.ball.dy
                 self.ball.y = brick.y + 16
             end
-            self.ball.dy = self.ball.dy * 1.02
+                self.ball.dy = self.ball.dy * 1.02
             break
         end
     end
-
+    
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end

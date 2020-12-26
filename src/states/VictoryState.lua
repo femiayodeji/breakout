@@ -10,6 +10,22 @@ end
 
 function VictoryState:update(dt)
     self.paddle:update(dt)
+    self.ball.x = self.paddle.x + (self.paddle.width / 2) - 4
+    self.ball.y = self.paddle.y - 8
+
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then 
+        gStateMachine:change('serve', {
+            level = self.level + 1,
+            bricks = LevelMaker.createMap(self.level + 1),
+            paddle = self.paddle,
+            health = self.health,
+            score = self.score,
+        })
+    end
+
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
 end
 
 function VictoryState:render()

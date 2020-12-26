@@ -34,7 +34,7 @@ function LevelMaker.createMap(level)
         local solidColor = math.random(1, highestColor)
         local solidTier = math.random(0, highestTier)
 
-        for x = 1, 1 do 
+        for x = 1, numCols do 
             if skipPattern and skipFlag  then
                 skipFlag = not skipFlag
                 goto continue

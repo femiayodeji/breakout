@@ -25,7 +25,7 @@ function HighScoreState:render()
     love.graphics.setFont(gFonts['medium'])
 
     for i = 1, 10 do 
-        local mane = self.highScores[i].name or '---'
+        local name = self.highScores[i].name or '---'
         local score = self.highScores[i].score or '---'
 
         love.graphics.printf(

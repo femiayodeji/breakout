@@ -163,7 +163,7 @@ function loadHighScores()
         if name then 
             scores[counter].name = string.sub(line, 1, 3)
         else
-            scores[counter].name = tonumber(line)
+            scores[counter].score = tonumber(line)
             counter = counter + 1
         end
         name = not name

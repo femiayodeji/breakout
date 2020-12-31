@@ -21,7 +21,7 @@ function VictoryState:update(dt)
             paddle = self.paddle,
             health = self.health,
             score = self.score,
-            highsScores = self.highScores
+            highScores = self.highScores
         })
     end
 

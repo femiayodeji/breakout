@@ -28,7 +28,7 @@ function PaddleSelectState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then 
         gSounds['confirm']:play()
         gStateMachine:change('serve', {
-            paddle = Paddle(self..currentPaddle), 
+            paddle = Paddle(self.currentPaddle), 
             bricks = LevelMaker.createMap(1), 
             health = 3, 
             score = 0, 
@@ -64,7 +64,7 @@ function PaddleSelectState:render()
 
     love.graphics.setColor(1, 1, 1, 1)
 
-    love.graphics.draw(gTextures['main'], gFrames['paddles'][2 + 4 * (currentPaddle - 1)], 
+    love.graphics.draw(gTextures['main'], gFrames['paddles'][2 + 4 * (self.currentPaddle - 1)], 
         VIRTUAL_WIDTH / 2 - 32, VIRTUAL_HEIGHT - VIRTUAL_HEIGHT / 3)
 end
 

@@ -2,7 +2,7 @@ GameOverState = Class{__includes = BaseState}
 
 function GameOverState:enter(params)
     self.score = params.score
-    self.highScores = params.highscores
+    self.highScores = params.highScores
 end
 
 function GameOverState:update(dt)
@@ -26,7 +26,7 @@ function GameOverState:update(dt)
             })
         else
             gStateMachine:change('start', {
-                highscores = self.highscores
+                highScores = self.highScores
             })
         end
     end
